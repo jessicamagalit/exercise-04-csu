@@ -232,7 +232,7 @@ cities  |>
 
 ```{r}
 #| echo: false
-threshold <- 10000
+threshold <- 100000
 
 big_cities <-  cities |> 
   filter(population > threshold)  |> 
@@ -252,13 +252,17 @@ big_cities  |>
   geom_point(aes(size = population, color = density)) + 
   scale_color_gradient(low = "blue", high = "red") + 
   labs(title = "USA Cities Population Stats",
-       subtitle = paste("Cities bigger then:", 
+       subtitle = paste("Cities bigger than:", 
                         formatC(threshold, format="d", big.mark=","),
                         "people"),
        caption = paste("Made by:", rmarkdown::metadata$author, "- ESS 330"),
        x="",
        y = "") + 
   theme_bw()
+
+# Save the plot
+ggsave("../img/usa_cities_map.png", width = 8, height = 6)
+
 ```
 
 
